@@ -10,4 +10,5 @@ public interface EmployeeService {
 
     String save(Employee employee);
     String saveAll(List<Employee> employeeList);
+    Employee updateEmployee(Employee newEmployee);
 }
