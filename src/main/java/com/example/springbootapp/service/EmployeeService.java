@@ -10,5 +10,7 @@ public interface EmployeeService {
 
     String save(Employee employee);
     String saveAll(List<Employee> employeeList);
-    Employee updateEmployee(Employee newEmployee);
+    String updateEmployee(Employee newEmployee);
+    Employee deleteEmployee(int id);
+    List<Employee> findByFirstNameLikeOrderByLastName(String firstName);
 }

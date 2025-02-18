@@ -40,12 +40,26 @@ public class EmployeeController {
         return employeeService.saveAll(employeeList);
     }
 
-    @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@RequestBody Employee newEmployee){
+    @PutMapping("/employees")
+    public String updateEmployee(@RequestBody Employee newEmployee){
 
-        employeeService.save(newEmployee);
-        return newEmployee;
+       return employeeService.save(newEmployee);
 
+
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public Employee deleteEmployee(@PathVariable int id){
+
+        return employeeService.deleteEmployee(id);
+
+
+    }
+
+    @GetMapping("/orderemployees/{firstname}")
+    public List<Employee> getFirstNameLIkeOrderBy
+            (@PathVariable String firstname){
+        return employeeService.findByFirstNameLikeOrderByLastName(firstname);
     }
 
 

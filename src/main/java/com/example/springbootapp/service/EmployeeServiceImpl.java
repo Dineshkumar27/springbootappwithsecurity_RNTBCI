@@ -35,19 +35,33 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Employee newEmployee) {
-        Employee oldEmployee = employeeRespository.findById(newEmployee.getId()).orElse(null);
+    public String updateEmployee(Employee newEmployee) {
+//        Employee oldEmployee = employeeRespository.findById(newEmployee.getId()).orElse(null);
+//
+//        if (oldEmployee != null) {
+//            oldEmployee.setId(newEmployee.getId());
+//            oldEmployee.setFirstName(newEmployee.getFirstName());
+//            oldEmployee.setLastName(newEmployee.getLastName());
+//            oldEmployee.setEmail(newEmployee.getEmail());
+//            employeeRespository.save(oldEmployee);
+//        } else {
+//            employeeRespository.save(newEmployee);
+//        }
+        employeeRespository.save(newEmployee);
+            return  "Employee with "+newEmployee.getId()+" updated";
 
-        if (oldEmployee != null) {
-            oldEmployee.setId(newEmployee.getId());
-            oldEmployee.setFirstName(newEmployee.getFirstName());
-            oldEmployee.setLastName(newEmployee.getLastName());
-            oldEmployee.setEmail(newEmployee.getEmail());
-            employeeRespository.save(oldEmployee);
-        } else {
-            employeeRespository.save(newEmployee);
-        }
-            return  newEmployee;
+    }
 
+    @Override
+    public Employee deleteEmployee(int id) {
+        Employee oldEmployee = employeeRespository.findById(id).orElse(null);
+
+        employeeRespository.deleteById(id);
+        return oldEmployee;
+    }
+
+    @Override
+    public List<Employee> findByFirstNameLikeOrderByLastName(String firstName) {
+        return employeeRespository.findByFirstNameLikeOrderByLastName(firstName);
     }
 }
